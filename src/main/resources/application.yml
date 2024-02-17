@@ -1,0 +1,15 @@
+spring:
+  profiles:
+    active: dev
+
+
+#mybatisPlus配置
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**Mapper.xml
+#  配置sql日志
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  type-enums-package: com.project.blog.enums
+
+server:
+  port: 8080

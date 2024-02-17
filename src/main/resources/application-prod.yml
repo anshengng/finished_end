@@ -1,0 +1,11 @@
+#生产环境
+
+text: 生产环境
+
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://ip address:3306/blog?characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: ***
+    password: ***
