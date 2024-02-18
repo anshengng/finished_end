@@ -7,14 +7,12 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.project.blog.common.Result;
 import com.project.blog.dto.UserLoginDTO;
 import com.project.blog.dto.UserRegisterDTO;
-import com.project.blog.entity.SysUser;
+import com.project.blog.entity.User;
 import com.project.blog.enums.RoleType;
 import com.project.blog.utils.JwtUtils;
 import com.project.blog.utils.Utils;
 import com.project.blog.vo.SysUserLoginVO;
-import com.project.blog.vo.SysUserVo;
 import io.swagger.annotations.Api;
-import org.springframework.beans.BeanUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,7 +27,7 @@ import org.springframework.web.bind.annotation.*;
 @Api(value = "用户模块", tags = "用户模块")
 @RestController
 @RequestMapping("/sysUser")
-public class SysUserController extends BaseController {
+public class userController extends BaseController {
 
     @GetMapping("/default")
     public String test(){
@@ -39,12 +37,12 @@ public class SysUserController extends BaseController {
 
     @PostMapping("/login")
     public Result login(@Validated @RequestBody UserLoginDTO userLoginDTO) {
-        LambdaQueryWrapper<SysUser> wrapper = new LambdaQueryWrapper<>();
-        wrapper.eq(SysUser::getUsername, userLoginDTO.getUsername())
+        LambdaQueryWrapper<User> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(User::getUsername, userLoginDTO.getUsername())
 //                .eq(SysUser::getPassword, userLoginDTO.getPassword())
                 .last("limit 1");
         //user.setPassword(SecureUtil.md5(user.getPassword()+ salt ));
-        SysUser userInfo = userService.getOne(wrapper);
+        User userInfo = userService.getOne(wrapper);
         if (userInfo != null) {
             String salt = userInfo.getSalt();
 
@@ -97,16 +95,16 @@ public class SysUserController extends BaseController {
 
     @PostMapping("/register")
     public Result register(@RequestBody UserRegisterDTO userRegisterDTO) {
-        LambdaQueryWrapper<SysUser> wrapper = new LambdaQueryWrapper<>();
-        wrapper.eq(SysUser::getUsername, userRegisterDTO.getUsername())
+        LambdaQueryWrapper<User> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(User::getUsername, userRegisterDTO.getUsername())
                 .last("limit 1");
         //有值 提示用户名已重复
-        SysUser userInfo = userService.getOne(wrapper);
+        User userInfo = userService.getOne(wrapper);
 
         if (userInfo != null) {
             return new Result<>().error("用户名称重复");
         }
-        SysUser user = new SysUser();
+        User user = new User();
         BeanUtil.copyProperties(userRegisterDTO, user);
 
         String salt = Utils.salt();

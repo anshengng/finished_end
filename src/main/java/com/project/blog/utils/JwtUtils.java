@@ -1,7 +1,7 @@
 package com.project.blog.utils;
 
 import cn.hutool.core.util.StrUtil;
-import com.project.blog.entity.SysUser;
+import com.project.blog.entity.User;
 import com.project.blog.service.SysUserService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
@@ -102,7 +102,7 @@ public class JwtUtils {
      * 根据userId和openid生成token
      * 传入User实体类
      */
-    public static String generateToken(SysUser user) {
+    public static String generateToken(User user) {
         Map<String, Object> map = new HashMap<>();
         map.put("userId", user.getId());
         map.put("username", user.getUsername());
@@ -119,7 +119,7 @@ public class JwtUtils {
      *
      * @return user对象
      */
-    public static SysUser getCurrentUserInfo() {
+    public static User getCurrentUserInfo() {
         try {
             HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
             String token = request.getHeader("token");

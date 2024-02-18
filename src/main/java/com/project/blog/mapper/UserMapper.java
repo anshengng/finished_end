@@ -1,6 +1,6 @@
 package com.project.blog.mapper;
 
-import com.project.blog.entity.SysUser;
+import com.project.blog.entity.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -13,6 +13,6 @@ import org.apache.ibatis.annotations.Mapper;
  * @since 2023-06-27
  */
 @Mapper
-public interface UserMapper extends BaseMapper<SysUser> {
+public interface UserMapper extends BaseMapper<User> {
 
 }

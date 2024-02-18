@@ -20,7 +20,7 @@ import lombok.Setter;
 @Setter
 @TableName("sys_user")
 @ApiModel(value = "SysUser对象", description = "用户信息表")
-public class SysUser extends BaseEntity {
+public class User extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 

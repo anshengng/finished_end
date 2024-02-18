@@ -2,7 +2,7 @@ package com.project.blog.interceptor;
 
 import cn.hutool.core.bean.BeanUtil;
 import com.project.blog.dto.SysUserDTO;
-import com.project.blog.entity.SysUser;
+import com.project.blog.entity.User;
 import com.project.blog.enums.RoleType;
 import com.project.blog.exception.CustomException;
 import com.project.blog.serviceImpl.SysUserServiceImpl;
@@ -61,7 +61,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         } else {
             Integer userId = (Integer) claims.get("userId");
             System.out.println(userId);
-            SysUser byId = sysUserService.getById(userId);
+            User byId = sysUserService.getById(userId);
             if (byId != null) {
 
                 if (!RoleType.ROLE_ADMIN.equals(byId.getRoleType())) {

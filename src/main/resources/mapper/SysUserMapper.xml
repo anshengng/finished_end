@@ -3,7 +3,7 @@
 <mapper namespace="com.project.blog.mapper.SysUserMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.project.blog.entity.SysUser">
+    <resultMap id="BaseResultMap" type="com.project.blog.entity.User">
         <result column="id" property="id" />
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />
